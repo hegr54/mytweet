@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import (DetailView,
+                                ListView,
+                                CreateView,
+                                UpdateView,
+                                DetailView)
 from .forms import TweetModelForm
 from .models import Tweet
+from .mixin import FormUserNeededMixin
+
 
 
 # Create your views here.
@@ -17,16 +24,16 @@ def home_tweet(request):
 
 #CRUD Create Retrive or Read Update Delete
 
-class TweetCreateView(CreateView):
+class TweetCreateView( LoginRequiredMixin,FormUserNeededMixin, CreateView):
     form_class = TweetModelForm
     template_name = "tweets/form.html"
     success_url = "/tweet/listc"
+    login_url = "/admin"
 
     # def form_valid(self, form):
     #     form.instance.user = self.request.user
     #     print form.instance.user
     #     return super(TweetCreateView, self).form_valid(form)
-
 
 
 
@@ -72,3 +79,11 @@ def tweet_list_view(request):
         "result": result_set
     }
     return render(request, "tweets/list_view.html", context)
+
+
+
+class TweetUpdateView(UpdateView):
+    queryset=Tweet.objects.all()#select *from Tweet
+    form_class=TweetModelForm
+    template_name="tweets/Update_view.html"
+    success_url="tweet/listc"

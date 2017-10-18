@@ -20,14 +20,14 @@ from django.conf.urls.static import static
 
 
 from tweet.views import  tweet_detail_view, tweet_list_view, TweetListView,  TweetDetailView
-from tweet.views import TweetCreateView
+from tweet.views import TweetCreateView, TweetUpdateView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tweet/detail$', tweet_detail_view, name='tweet_detail'),
     url(r'^tweet/list$', tweet_list_view, name='tweet_list'),
     url(r'^tweet/create$', TweetCreateView.as_view(), name='tweet_create'),
-    url(r'^tweet/detailc/(?P<id>\d)/$', TweetDetailView.as_view(), name='tweet_detail'),
+    url(r'^tweet/detail/(?P<id>\d)/$', TweetDetailView.as_view(), name='tweet_detail'),
     url(r'^tweet/listc$', TweetListView.as_view(), name='tweet_list'),
-
+    url(r'^tweet/detail/(?P<pk>\d)/edit/$', TweetUpdateView.as_view(), name='tweet_edit'),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
