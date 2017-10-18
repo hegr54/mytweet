@@ -7,7 +7,7 @@ from django.views.generic import (DetailView,
                                 ListView,
                                 CreateView,
                                 UpdateView,
-                                DetailView)
+                                 DeleteView)
 from .forms import TweetModelForm
 from .models import Tweet
 from .mixin import FormUserNeededMixin
@@ -36,6 +36,16 @@ class TweetCreateView( LoginRequiredMixin,FormUserNeededMixin, CreateView):
     #     return super(TweetCreateView, self).form_valid(form)
 
 
+class TweetUpdateView(UpdateView):
+    queryset=Tweet.objects.all() #select *from Tweet
+    form_class=TweetModelForm
+    template_name="tweets/Update_view.html"
+    success_url="/tweet/listc"
+
+class TweetDeleteView(LoginRequiredMixin, DeleteView):
+    model = Tweet
+    template_name = "tweets/delete_confirm.html"
+    success_url = reverse_lazy("tweet_list")
 
 #With built in django generic Class-based
 class TweetDetailView(DetailView):
@@ -79,11 +89,3 @@ def tweet_list_view(request):
         "result": result_set
     }
     return render(request, "tweets/list_view.html", context)
-
-
-
-class TweetUpdateView(UpdateView):
-    queryset=Tweet.objects.all()#select *from Tweet
-    form_class=TweetModelForm
-    template_name="tweets/Update_view.html"
-    success_url="tweet/listc"
