@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,9 +26,10 @@ urlpatterns = [
     url(r'^tweet/detail$', tweet_detail_view, name='tweet_detail'),
     url(r'^tweet/list$', tweet_list_view, name='tweet_list'),
     url(r'^tweet/create$', TweetCreateView.as_view(), name='tweet_create'),
+    url(r'^tweet/listc$', TweetListView.as_view(), name='tweet_listc'),
     url(r'^tweet/detail/(?P<pk>\d)/edit/$', TweetUpdateView.as_view(), name='tweet_edit'),
     url(r'^tweet/detail/(?P<pk>\d)/delete/$', TweetDeleteView.as_view(), name='tweet_delete'),
     url(r'^tweet/detail/(?P<id>\d)/$', TweetDetailView.as_view(), name='tweet_detail'),
-    url(r'^tweet/listc$', TweetListView.as_view(), name='tweet_list'),
+    url(r'^api/tweet/', include('tweet.api.urls', namespace='tweet_api'))
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
