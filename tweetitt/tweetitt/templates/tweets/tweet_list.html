@@ -1,6 +1,6 @@
 {% extends "base.html"%}
 {%block search%}
-  {% include "tweets/search_form.html" %}<br/>
+  {% include "tweets/search_form.html" %}
 {%endblock%}
 
 
@@ -14,10 +14,10 @@
   </p> -->
 </div>
 {% endif %}
-  {% for object in object_list %}
-    <article class="post">
 
-  <h4>{{object}}</h4>
+    <article class="post">
+  {% for object in object_list %}
+  <h1>{{object}}</h1>
   <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 1</span>
   <div class="media">
 

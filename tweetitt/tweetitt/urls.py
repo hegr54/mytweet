@@ -24,9 +24,9 @@ from tweet.views import TweetCreateView, TweetUpdateView, TweetDeleteView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tweet/detail$', tweet_detail_view, name='tweet_detail'),
-    url(r'^tweet/list$', tweet_list_view, name='tweet_list'),
+    url(r'^tweet/list$', tweet_list_view, name='tweetlist'),
     url(r'^tweet/create$', TweetCreateView.as_view(), name='tweet_create'),
-    url(r'^tweet/listc$', TweetListView.as_view(), name='tweet_listc'),
+    url(r'^tweet/listc$', TweetListView.as_view(), name='tweet_list'),
     url(r'^tweet/detail/(?P<pk>\d)/edit/$', TweetUpdateView.as_view(), name='tweet_edit'),
     url(r'^tweet/detail/(?P<pk>\d)/delete/$', TweetDeleteView.as_view(), name='tweet_delete'),
     url(r'^tweet/detail/(?P<id>\d)/$', TweetDetailView.as_view(), name='tweet_detail'),
