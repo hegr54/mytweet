@@ -24,9 +24,9 @@ def home_tweet(request):
 
 #CRUD Create Retrive or Read Update Delete
 
-class TweetCreateView( LoginRequiredMixin,FormUserNeededMixin, CreateView):
+class TweetCreateView(LoginRequiredMixin,FormUserNeededMixin, CreateView):
     form_class = TweetModelForm
-    template_name = "tweets/form.html"
+    template_name = "tweets/create_view.html"
     success_url = "/tweet/listc"
     login_url = "/admin"
 
@@ -77,12 +77,12 @@ class TweetListView(ListView):
                             )
         return qs
 
-        def get_context_data(self, *args, **kwargs):
-            context = super(TweetListView, self).get_context_data(*args, **kwargs)
-            print context
-            context['create_form'] = TweetModelForm()
-            context['create_url'] = reverse_lazy("tweet_create")
-            return context
+    def get_context_data(self, *args, **kwargs):
+        context = super(TweetListView, self).get_context_data(*args, **kwargs)
+        print context
+        context['create_form'] = TweetModelForm()
+        context['create_url'] = reverse_lazy("tweet_create")
+        return context
 
     # def get_context_data(self, *args, **kwargs):
     #     context = super(TweetListView, self).get_context_data(*args, **kwargs)
