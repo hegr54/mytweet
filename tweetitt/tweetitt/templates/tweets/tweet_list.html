@@ -1,6 +1,28 @@
 {% extends "base.html"%}
+
+{%block script%}
+<script>
+  $(document).ready(function(){
+    console.log("working");
+    $.ajax({
+      url: "/api/tweet/",
+      method: "GET",
+      success: function(data){
+        console.log(data);
+      },
+      error: function(data){
+        console.log("error");
+        console.log(data);
+      }
+    });
+  });
+</script>
+
+{%endblock script%}
+
+
 {%block search%}
-  {% include "tweets/search_form.html" %}
+  {% include "tweets/search_form.html" %}<br/>
 {%endblock%}
 
 
@@ -14,10 +36,10 @@
   </p> -->
 </div>
 {% endif %}
-
-    <article class="post">
   {% for object in object_list %}
-  <h1>{{object}}</h1>
+  <article class="post">
+
+  <h4>{{object}}</h4>
   <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 1</span>
   <div class="media">
 

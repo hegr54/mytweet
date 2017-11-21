@@ -10,14 +10,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
   <!-- Bulma Version 0.6.0 -->
-
   <link href="{% static 'static/bulma/css/bulma.css' %}" rel="stylesheet">
-<link href="{% static 'static/bulma/css/forum.css' %}" rel="stylesheet">
+  <link href="{% static 'static/bulma/css/forum.css' %}" rel="stylesheet">
+
+
 </head>
 <body>
 
   <nav class="navbar is-white topNav">
-    <div class="container">
+    <div class="container" >
       <div class="navbar-brand">
         <a class="navbar-item" href="../">
             <img src="../images/bulma.png" width="112" height="28">
@@ -106,7 +107,7 @@
           {%block content%}
           {%endblock%}
           <!-- <article class="post">
-            <h4></h4>
+            <h4>Bulma: How do you center a button in a box?</h4>
             <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 1</span>
             <div class="media">
               <div class="media-left">
@@ -125,6 +126,7 @@
             </div>
           </article> -->
 
+
         </div>
       </div>
 
@@ -140,11 +142,20 @@
         <p>
           <a class="icon" href="https://github.com/dansup/bulma-templates">
             <i class="fa fa-github"></i>
-          </a>
-        </p> -->
+          </a> -->
+        </p>
       </div>
     </div>
   </footer>
-  <script async type="text/javascript" src="../js/bulma.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+
+  <!-- <script async type="text/javascript" src="{% static 'static/bulma/js/bulma.js' %}"></script> -->
+
+  <!-- <script async type="text/javascript" src="../js/bulma.js"></script> -->
+  {%block script%}
+  {%endblock script%}
 </body>
 </html>
